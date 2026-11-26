@@ -677,3 +677,12 @@ footer.site.mini .flinks li a{padding:8px 0;font-size:.95rem;font-weight:500;col
 .card.art h4{margin:16px 0 6px;font-size:1.02rem}
 .card.art h3{margin-top:0}
 .art-note{margin:18px 0 0;font-weight:500}
+
+/* 獨立分頁（關於本站／責任娛樂／免責聲明／使用條款／隱私政策） */
+.page-legal .phead h1{margin:0 0 12px}
+.page-legal .phead .ph.block{max-width:70ch;line-height:1.8}
+.card.art ul{margin:0 0 12px;padding-left:1.3em;line-height:1.85}
+.card.art li{margin:2px 0}
+.legal-close{font-weight:700}
+.legal-links{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
+footer.site.mini .flinks li a[aria-current="page"]{color:#6fd2ff;font-weight:700}
