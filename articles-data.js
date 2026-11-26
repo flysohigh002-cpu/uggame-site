@@ -157,6 +157,36 @@ window.ARTICLES_DATA = {
       body: `內容整理中，敬請期待。`
     },
     {
+      id: "game-13",
+      title: "遊戲介紹 13",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-13.jpg",
+      coverAlt: "財神騎金馬角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-14",
+      title: "遊戲介紹 14",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-14.jpg",
+      coverAlt: "小猴子角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-15",
+      title: "遊戲介紹 15",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-15.jpg",
+      coverAlt: "無尾熊角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
       id: "format-demo",
       title: "【範例】文章格式說明",
       category: "新手教學",
