@@ -610,3 +610,51 @@ footer.site{border-radius:28px;background:radial-gradient(60% 80% at 100% 0%,rgb
   .tabbar a:nth-child(3){color:#cfe2ff}
   .tabbar a:nth-child(3)::before{border-color:#12203c}
 }
+
+
+/* =========================================================
+   首頁 App 版型（參考 UG 手機版）：Banner → 公告列 → 分類標籤 → 兩欄卡片
+   ========================================================= */
+.home-app{max-width:1100px;margin:0 auto;padding:6px 10px 0}
+.banner{margin:0}
+.banner .slider{aspect-ratio:11/5;border-radius:22px;box-shadow:0 18px 34px -20px rgba(10,50,140,.7);background:#0d3a86}
+.banner .ph.img{background:linear-gradient(135deg,#0b2d6e,#1c6fd8);color:#cfe6ff;border-radius:0;font-size:.9rem}
+.banner .ph.img:before{background:rgba(255,255,255,.08)}
+.banner .dots{bottom:8px;gap:6px}
+.banner .dots button{width:7px;height:7px;background:rgba(255,255,255,.5)}
+.banner .dots button[aria-current="true"]{width:20px;background:#ff4a4a}
+.notice{display:flex;align-items:center;gap:12px;margin:12px 0;padding:8px 18px 8px 10px;border-radius:999px;background:rgba(255,255,255,.95);border:1px solid #fff;box-shadow:0 10px 22px -14px rgba(25,80,170,.45);-webkit-tap-highlight-color:transparent;transition:transform .2s}
+.notice:active{transform:scale(.98)}
+.nchip{flex:none;display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:999px;background:#ffeeb8;color:#8a5a00;font-weight:800;font-size:.88rem}
+.ntxt{flex:1;min-width:0;text-align:right;color:#5f7391;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gpanel{padding:14px 12px 18px;border-radius:30px;background:rgba(255,255,255,.55);border:1px solid #fff;box-shadow:0 20px 40px -26px rgba(25,80,170,.4)}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.cats::-webkit-scrollbar{display:none}
+.cats .chip{flex:none;min-height:38px;padding:0 20px;font-size:.95rem}
+.ggrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (min-width:700px){.ggrid{grid-template-columns:repeat(3,1fr);gap:16px}}
+@media (min-width:1000px){.ggrid{grid-template-columns:repeat(4,1fr)}}
+.gcard{display:block;overflow:hidden;border-radius:18px;background:linear-gradient(180deg,#fff,#f3f8ff);border:1.5px solid #cfe1f9;box-shadow:0 12px 22px -16px rgba(25,80,170,.5);-webkit-tap-highlight-color:transparent;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+@media (hover:hover){.gcard:hover{transform:translateY(-5px);box-shadow:0 22px 30px -16px rgba(25,80,170,.55)}}
+.gcard:active{transform:scale(.97)}
+.gimg{display:block;aspect-ratio:4/3;background:radial-gradient(70% 70% at 50% 40%,#fff 0%,#dcebff 55%,#b9d6fa 100%);position:relative;overflow:hidden}
+.gimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.gt{display:flex;align-items:center;gap:8px;padding:11px 12px 13px}
+.gt i{flex:none;width:18px;height:18px;border-radius:50%;border:2.5px solid #2a8cf0;border-right-color:#2dd4a0}
+.gt b{min-width:0;font-size:.98rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gpanel .adrow{padding:16px 0}
+.allmore{display:flex;justify-content:center;margin:18px 0 0;max-width:none}
+.footer-mini,footer.site.mini{padding:34px 0 22px}
+footer.site.mini .f-brand{margin:0 0 6px}
+footer.site.mini .copy{margin-top:8px}
+@media (prefers-color-scheme:dark){
+  .notice{background:rgba(20,34,62,.92);border-color:rgba(255,255,255,.08)}
+  .ntxt{color:#a9bdd9}
+  .nchip{background:#4a3b10;color:#ffd98a}
+  .gpanel{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+  .gcard{background:linear-gradient(180deg,#182a4c,#121f3a);border-color:rgba(120,170,255,.16)}
+  .gimg{background:radial-gradient(70% 70% at 50% 40%,#2a4a80,#16294d 70%)}
+}
+.banner{margin-top:10px}
+@media (min-width:700px){.banner .slider{aspect-ratio:21/7}}
+@media (min-width:1000px){.banner .slider{aspect-ratio:24/7}}
