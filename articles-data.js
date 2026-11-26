@@ -31,7 +31,7 @@ window.ARTICLES_DATA = {
       "公告",
       "其他"
     ],
-    "homeCount": 8,
+    "homeCount": 15,
     "showEmptySlots": true
   },
 
