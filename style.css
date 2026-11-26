@@ -667,3 +667,13 @@ footer.site.mini .copy{margin-top:8px}
 footer.site.mini .flinks{display:flex;flex-wrap:wrap;gap:2px 22px;margin:14px 0 4px}
 footer.site.mini .flinks li a{padding:8px 0;font-size:.95rem;font-weight:500;color:#dbe6f8}
 @media (hover:hover){footer.site.mini .flinks li a:hover{transform:none;color:#6fd2ff}}
+
+/* ===== 首頁圖文內容區 ===== */
+.art-sec .art-h1{font-size:clamp(1.7rem,5.5vw,2.4rem);margin:0 0 6px}
+.art-sec .art-sub{font-size:1.15rem;font-weight:700;margin:0}
+.art-intro{max-width:880px;margin:0 0 22px}
+.art-intro p,.card.art p{line-height:1.85;margin:0 0 10px}
+.art-stack{display:grid;gap:var(--gap,18px)}
+.card.art h4{margin:16px 0 6px;font-size:1.02rem}
+.card.art h3{margin-top:0}
+.art-note{margin:18px 0 0;font-weight:500}
