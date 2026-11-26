@@ -37,6 +37,126 @@ window.ARTICLES_DATA = {
 
   articles: [
     {
+      id: "game-01",
+      title: "遊戲介紹 01",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-01.jpg",
+      coverAlt: "財神角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-02",
+      title: "遊戲介紹 02",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-02.jpg",
+      coverAlt: "金盔雷神角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-03",
+      title: "遊戲介紹 03",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-03.jpg",
+      coverAlt: "藍色巨魔角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-04",
+      title: "遊戲介紹 04",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-04.jpg",
+      coverAlt: "老虎角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-05",
+      title: "遊戲介紹 05",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-05.jpg",
+      coverAlt: "海盜角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-06",
+      title: "遊戲介紹 06",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-06.jpg",
+      coverAlt: "牛仔角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-07",
+      title: "遊戲介紹 07",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-07.jpg",
+      coverAlt: "熊貓角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-08",
+      title: "遊戲介紹 08",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-08.jpg",
+      coverAlt: "埃及神角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-09",
+      title: "遊戲介紹 09",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-09.jpg",
+      coverAlt: "戰錘雷神角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-10",
+      title: "遊戲介紹 10",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-10.jpg",
+      coverAlt: "柴犬角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-11",
+      title: "遊戲介紹 11",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-11.jpg",
+      coverAlt: "小恐龍角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
+      id: "game-12",
+      title: "遊戲介紹 12",
+      category: "遊戲攻略",
+      date: "2026-11-27",
+      summary: "",
+      cover: "cover-12.jpg",
+      coverAlt: "小羊角色圖",
+      body: `內容整理中，敬請期待。`
+    },
+    {
       id: "format-demo",
       title: "【範例】文章格式說明",
       category: "新手教學",
