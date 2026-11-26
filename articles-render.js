@@ -1,14 +1,13 @@
-/* 白鬍子｜文章系統（這個檔案不需要修改）
+/* UG Online｜文章系統（這個檔案不需要修改）
    讀取 articles-data.js，自動產生：
-   1. 各處的文章卡片（首頁、專欄文章、主題頁的相關文章）
-   2. 系列文章目錄
-   3. 單篇文章頁：article.html?id=文章代號 */
+   1. 文章卡片（所有文章列表）
+   2. 單篇文章頁：article.html?id=文章代號 */
 (function () {
   'use strict';
   var D = window.ARTICLES_DATA || {}, SITE = D.site || {}, SERIES = D.series || {};
   var ALL = (D.articles || []).filter(function (a) { return a && a.id && a.title && !a.draft; });
   var SHOW = SITE.showEmptySlots !== false;
-  var NAME = SITE.name || '白鬍子';
+  var NAME = SITE.name || 'UG Online';
   var each = function (sel, fn, root) { [].forEach.call((root || document).querySelectorAll(sel), fn); };
 
   /* ---------- 小工具 ---------- */
@@ -89,23 +88,6 @@
     if (nx && nx.hasAttribute('data-pager')) pager(nx, page, pages, location.pathname);
   });
 
-  /* ---------- 2. 系列文章目錄 ---------- */
-  each('[data-series]', function (ol) {
-    var S = SERIES[ol.getAttribute('data-series')] || {}, slots = +ol.getAttribute('data-slots') || 10, h = '', n = 0;
-    (S.ids || []).forEach(function (id) {
-      var a = find(id);
-      if (a) { n++; h += '<li><a href="' + href(a) + '"><div><h3>' + esc(a.title) + '</h3><p class="sum">' + esc(a.summary || '') + '</p></div></a></li>'; }
-    });
-    if (SHOW) for (; n < slots; n++) h += '<li class="empty"><a href="#" tabindex="-1" aria-hidden="true"><div><h3>【第 ' + (n + 1) + ' 篇標題】</h3><p class="ph block">【一句話摘要】</p></div></a></li>';
-    ol.innerHTML = h || '<li class="muted">系列文章即將上架，敬請期待。</li>';
-  });
-  each('[data-series-title]', function (e) { var S = SERIES[e.getAttribute('data-series-title')]; if (S && S.title) e.textContent = S.title; });
-  each('[data-series-desc]', function (e) { var S = SERIES[e.getAttribute('data-series-desc')]; if (S && S.desc) { e.className = ''; e.textContent = S.desc; } });
-  each('[data-series-cover]', function (e) {
-    var S = SERIES[e.getAttribute('data-series-cover')], c = S && safe(S.cover);
-    if (c) e.outerHTML = '<img src="' + esc(c) + '" alt="' + esc(S.title || '') + '" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:22px">';
-  });
-
   /* ---------- 3. 單篇文章：內容排版（簡易 Markdown） ---------- */
   function inline(s) {
     s = esc(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
@@ -154,7 +136,7 @@
       var c = safe(a.cover);
       root.innerHTML =
         '<article class="wrap post" style="padding:28px 20px 56px">' +
-        '<p class="crumb muted"><a href="index.html">首頁</a> / <a href="articles.html">專欄文章</a> / ' + esc(a.title) + '</p>' +
+        '<p class="crumb muted"><a href="index.html">首頁</a> / <a href="articles.html">所有文章</a> / ' + esc(a.title) + '</p>' +
         '<p class="meta">' + (a.category ? '<span class="tag">' + esc(a.category) + '</span>' : '') +
         (a.date ? '<span>' + esc(a.date) + '</span>' : '') + '<span>約 ' + mins + ' 分鐘閱讀</span></p>' +
         '<h1>' + esc(a.title) + '</h1>' +
@@ -163,7 +145,7 @@
         (ser ? '<aside class="card seriesbox"><b>' + esc(ser.s.title || '系列文章') + '</b><span>第 ' + (ser.i + 1) + ' 篇，共 ' + ser.ids.length + ' 篇</span></aside>' : '') +
         '<div class="post-body">' + markdown(a.body) + '</div>' +
         '<nav class="pn" aria-label="上下篇">' + pn(prev, ser ? '上一篇' : '較新文章', 'prevn') + pn(next, ser ? '下一篇' : '較舊文章', 'nextn') + '</nav>' +
-        '<p><a class="btn line" href="' + (ser ? 'series-' + ser.key + '.html' : 'articles.html') + '">' + (ser ? '回系列目錄' : '回文章列表') + '</a></p>' +
+        '<p><a class="btn line" href="articles.html">回文章列表</a></p>' +
         '</article>' +
         (rel.length ? '<section class="sec alt"><div class="wrap"><div class="sec-head"><div><h2>延伸閱讀</h2></div><a class="more" href="articles.html">更多文章</a></div><div class="grid g3">' + rel.map(card).join('') + '</div></div></section>' : '');
 
