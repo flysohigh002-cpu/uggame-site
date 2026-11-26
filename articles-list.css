@@ -1,0 +1,29 @@
+/* 所有文章頁優化：手機 2 欄緊湊卡片、縮小頁首、標題與摘要限制行數 */
+[data-articles="all"]{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+[data-articles="all"] .card.media{border-radius:18px;margin:0}
+[data-articles="all"] .thumb{display:block;overflow:hidden}
+[data-articles="all"] .thumb img,[data-articles="all"] .thumb .ph{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:0}
+[data-articles="all"] .body{padding:10px 12px 14px}
+[data-articles="all"] .meta{gap:6px;margin:0 0 6px;font-size:.78rem;flex-wrap:wrap}
+[data-articles="all"] .meta .tag{padding:2px 8px;font-size:.74rem}
+[data-articles="all"] h3{margin:0;font-size:.95rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+[data-articles="all"] .sum,[data-articles="all"] .go{display:none}
+
+@media (min-width:700px){
+  [data-articles="all"]{grid-template-columns:repeat(3,1fr);gap:18px}
+  [data-articles="all"] .body{padding:14px 16px 18px}
+  [data-articles="all"] h3{font-size:1.05rem}
+  [data-articles="all"] .sum{display:-webkit-box;margin:8px 0 0;font-size:.9rem;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  [data-articles="all"] .go{display:inline-block;margin-top:10px}
+}
+@media (min-width:1000px){[data-articles="all"]{grid-template-columns:repeat(4,1fr)}}
+
+/* 頁首區塊在手機縮小，內容更快出現 */
+@media (max-width:600px){
+  .phead{padding:22px 0 20px}
+  .phead h1{font-size:1.7rem;margin:6px 0 8px}
+  .phead .ph.block{font-size:.95rem;line-height:1.6;margin:0}
+}
+.phead .crumb a{text-decoration:none;opacity:.9}
+.phead .crumb a:hover{text-decoration:underline}
+.cats{padding-bottom:6px}
