@@ -632,8 +632,8 @@ footer.site{border-radius:28px;background:radial-gradient(60% 80% at 100% 0%,rgb
 .cats::-webkit-scrollbar{display:none}
 .cats .chip{flex:none;min-height:38px;padding:0 20px;font-size:.95rem}
 .ggrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-@media (min-width:700px){.ggrid{grid-template-columns:repeat(3,1fr);gap:16px}}
-@media (min-width:1000px){.ggrid{grid-template-columns:repeat(4,1fr)}}
+/* 首頁顯示 8 篇：手機 2 欄×4 列、平板與電腦 4 欄×2 列，最後一列不會落單 */
+@media (min-width:700px){.ggrid{grid-template-columns:repeat(4,1fr);gap:16px}}
 .gcard{display:block;overflow:hidden;border-radius:18px;background:linear-gradient(180deg,#fff,#f3f8ff);border:1.5px solid #cfe1f9;box-shadow:0 12px 22px -16px rgba(25,80,170,.5);-webkit-tap-highlight-color:transparent;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
 @media (hover:hover){.gcard:hover{transform:translateY(-5px);box-shadow:0 22px 30px -16px rgba(25,80,170,.55)}}
 .gcard:active{transform:scale(.97)}
@@ -641,7 +641,7 @@ footer.site{border-radius:28px;background:radial-gradient(60% 80% at 100% 0%,rgb
 .gimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .gt{display:flex;align-items:center;gap:8px;padding:11px 12px 13px}
 .gt i{flex:none;width:18px;height:18px;border-radius:50%;border:2.5px solid #2a8cf0;border-right-color:#2dd4a0}
-.gt b{min-width:0;font-size:.98rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gt b{min-width:0;font-size:.98rem;font-weight:800;line-height:1.35;min-height:2.7em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}  /* 標題最多 2 行，卡片高度一致 */
 .gpanel .adrow{padding:16px 0}
 .allmore{display:flex;justify-content:center;margin:18px 0 0;max-width:none}
 .footer-mini,footer.site.mini{padding:34px 0 22px}

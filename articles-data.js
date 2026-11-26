@@ -31,7 +31,7 @@ window.ARTICLES_DATA = {
       "公告",
       "其他"
     ],
-    "homeCount": 15,
+    "homeCount": 8,
     "showEmptySlots": true
   },
 
@@ -405,7 +405,7 @@ VS 決鬥符號出現並形成連線時，會擴展成覆蓋整條轉軸的百�
       summary: "TPG 電子以亞洲文化題材與互動式獎勵關卡見長，這篇整理品牌特色、四大亮點與五個熱門系列。",
       cover: "cover-07.jpg",
       coverAlt: "熊貓角色圖",
-      body:TPG 電子是 Triple Profits Games 的簡稱，深耕亞洲線上娛樂市場，以貼近華人文化的視覺題材、高互動獎勵關卡與流暢的 HTML5 跨平台體驗累積不少忠實玩家。
+      body: `TPG 電子是 Triple Profits Games 的簡稱，深耕亞洲線上娛樂市場，以貼近華人文化的視覺題材、高互動獎勵關卡與流暢的 HTML5 跨平台體驗累積不少忠實玩家。
 
 一、品牌背景
 
