@@ -658,3 +658,7 @@ footer.site.mini .copy{margin-top:8px}
 .banner{margin-top:10px}
 @media (min-width:700px){.banner .slider{aspect-ratio:21/7}}
 @media (min-width:1000px){.banner .slider{aspect-ratio:24/7}}
+
+/* ===== UG Online Logo（透明背景、不裁圓、不顯示文字） ===== */
+.brand .logo{width:auto;height:44px;max-width:none;border-radius:0;box-shadow:none;filter:drop-shadow(0 4px 8px rgba(11,40,100,.25))}
+.f-brand .logo{width:auto;height:46px;border-radius:0;box-shadow:none}
