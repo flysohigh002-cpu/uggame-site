@@ -39,22 +39,20 @@
  <div class="dots"></div>
 </div></section>
 
-<a class="notice" href="articles.html"><span class="nchip"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4h3l7 4V6L7 10z"/><path d="M17.5 9.5a4 4 0 0 1 0 5"/></svg>公告</span><span class="ntxt">【在這裡填公告內容，過長會自動省略】</span></a>
+<a class="notice" href="articles.html" data-notice><span class="nchip"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4h3l7 4V6L7 10z"/><path d="M17.5 9.5a4 4 0 0 1 0 5"/></svg>公告</span><span class="ntxt">【在這裡填公告內容，過長會自動省略】</span></a>
 
 <section class="gpanel">
- <div class="cats" aria-label="文章分類"><a class="chip" href="articles.html" aria-current="page">全部</a><a class="chip" href="articles.html">遊戲攻略</a><a class="chip" href="articles.html">活動</a><a class="chip" href="articles.html">公告</a><a class="chip" href="articles.html">新手教學</a></div>
- <!-- 卡片：圖片留空。換圖：把 <span class="gimg"></span> 換成 <span class="gimg"><img src="card-1.jpg" alt=""></span>（建議 800×600）。每張卡片都會進入「所有文章」頁 -->
- <div class="ggrid">
-<a class="gcard" href="articles.html"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 1】</b></span></a>
-<a class="gcard" href="articles.html"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 2】</b></span></a>
-<a class="gcard" href="articles.html"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 3】</b></span></a>
-<a class="gcard" href="articles.html"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 4】</b></span></a>
- </div>
-  <div class="ggrid">
-<a class="gcard" href="articles.html"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 5】</b></span></a>
-<a class="gcard" href="articles.html"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 6】</b></span></a>
-<a class="gcard" href="articles.html"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 7】</b></span></a>
-<a class="gcard" href="articles.html"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 8】</b></span></a>
+ <div class="cats" aria-label="文章分類" data-home-chips><a class="chip" href="articles.html" aria-current="page">全部</a><a class="chip" href="articles.html">遊戲攻略</a><a class="chip" href="articles.html">活動</a><a class="chip" href="articles.html">公告</a><a class="chip" href="articles.html">新手教學</a></div>
+ <!-- 文章卡片由 articles-data.js 自動產生（到 admin.html 編輯）。點卡片會跳出文章彈窗；下面這 8 張是尚未載入時的預設版位 -->
+ <div class="ggrid" data-home-grid>
+<div class="gcard" aria-hidden="true"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 1】</b></span></div>
+<div class="gcard" aria-hidden="true"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 2】</b></span></div>
+<div class="gcard" aria-hidden="true"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 3】</b></span></div>
+<div class="gcard" aria-hidden="true"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 4】</b></span></div>
+<div class="gcard" aria-hidden="true"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 5】</b></span></div>
+<div class="gcard" aria-hidden="true"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 6】</b></span></div>
+<div class="gcard" aria-hidden="true"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 7】</b></span></div>
+<div class="gcard" aria-hidden="true"><span class="gimg"></span><span class="gt"><i></i><b>【文章標題 8】</b></span></div>
  </div>
  <p class="allmore"><a class="btn blue" href="articles.html">查看所有文章</a></p>
 </section>

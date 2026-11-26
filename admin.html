@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>文章後台｜UG Online</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+<style>
+.adm{--a-line:#cfdcef;--a-bg:#f2f6fc;--a-card:#fff;--a-ink:#1b2a47;--a-mute:#66778f;--a-blue:#1478d4;margin:0;background:var(--a-bg);color:var(--a-ink);font-family:"Noto Sans TC",system-ui,sans-serif;min-height:100vh;padding-bottom:0}
+.adm *{box-sizing:border-box}
+.adm button,.adm input,.adm select,.adm textarea{font:inherit;color:inherit}
+.adm-top{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;background:#fff;border-bottom:1px solid var(--a-line)}
+.adm-top h1{font-size:1.05rem;margin:0;font-weight:800}
+.adm-status{font-size:.85rem;color:var(--a-mute);flex:1;min-width:120px}
+.adm-status.warn{color:#b86a00;font-weight:700}.adm-status.ok{color:#0a8a5a;font-weight:700}.adm-status.err{color:#c62828;font-weight:700}
+.adm-actions{display:flex;gap:8px;flex-wrap:wrap}
+.adm-btn{appearance:none;border:1px solid var(--a-line);background:#fff;border-radius:10px;padding:8px 14px;font-weight:600;font-size:.9rem;cursor:pointer;white-space:nowrap}
+.adm-btn:hover{border-color:var(--a-blue);color:var(--a-blue)}
+.adm-btn.primary{background:linear-gradient(180deg,#38a8ff,#0b6fe0);color:#fff;border-color:transparent}
+.adm-btn.primary:hover{color:#fff;filter:brightness(1.05)}
+.adm-btn.danger{color:#c62828}.adm-btn.danger:hover{border-color:#c62828;color:#c62828}
+.adm-btn.sm{padding:5px 10px;font-size:.82rem;border-radius:8px}
+.adm-banner{margin:10px 14px 0;padding:10px 14px;border-radius:10px;background:#fff6d9;border:1px solid #e8c766;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.9rem}
+.adm-banner[hidden]{display:none}
+.adm-tabs{display:none;gap:6px;padding:10px 14px 0}
+.adm-tabs button{flex:1;padding:8px;border:1px solid var(--a-line);background:#fff;border-radius:10px;font-weight:700}
+.adm-tabs button[aria-pressed="true"]{background:var(--a-blue);color:#fff;border-color:var(--a-blue)}
+.adm-main{display:grid;grid-template-columns:270px minmax(0,1fr) minmax(0,1fr);gap:14px;padding:14px;align-items:start}
+.adm-list,.adm-edit,.adm-prev{background:var(--a-card);border:1px solid var(--a-line);border-radius:14px}
+.adm-list{position:sticky;top:64px;max-height:calc(100vh - 80px);display:flex;flex-direction:column;overflow:hidden}
+.adm-list-head{display:flex;gap:8px;padding:10px;border-bottom:1px solid var(--a-line)}
+.adm-list-head input{flex:1;min-width:0;border:1px solid var(--a-line);border-radius:8px;padding:6px 10px}
+.adm-list ul{list-style:none;margin:0;padding:6px;overflow:auto}
+.adm-list li{padding:9px 10px;border-radius:10px;cursor:pointer;border:1px solid transparent}
+.adm-list li:hover{background:#f2f7ff}
+.adm-list li[aria-current="true"]{background:#e3f0ff;border-color:#9cc7f5}
+.adm-list li b{display:block;font-size:.92rem;line-height:1.35;word-break:break-word}
+.adm-list li small{color:var(--a-mute);font-size:.78rem}
+.adm-badge{display:inline-block;margin-left:6px;padding:0 8px;border-radius:999px;background:#ffe9b0;color:#8a5a00;font-size:.72rem;font-weight:700}
+.adm-edit{padding:16px}
+.adm-edit h2{margin:0 0 12px;font-size:1rem}
+.adm-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.adm-edit label{display:block;font-size:.82rem;font-weight:700;color:var(--a-mute);margin:10px 0 4px}
+.adm-edit input[type=text],.adm-edit input[type=date],.adm-edit input[type=number],.adm-edit select,.adm-edit textarea,.adm-dlg input[type=text],.adm-dlg input[type=password],.adm-dlg input[type=number],.adm-dlg textarea{width:100%;border:1px solid var(--a-line);border-radius:10px;padding:8px 10px;background:#fff}
+.adm-edit textarea#f_body{min-height:380px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9rem;line-height:1.6;resize:vertical}
+.adm-edit textarea#f_summary{min-height:64px}
+.adm-edit input:focus,.adm-edit select:focus,.adm-edit textarea:focus{outline:2px solid #7bb8f3;outline-offset:0}
+.adm-tools{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.adm-tools .adm-btn{padding:6px 10px;font-size:.85rem}
+.adm-hint{font-size:.8rem;color:var(--a-mute);margin:4px 0 0}
+.adm-err{color:#c62828;font-size:.82rem;margin:4px 0 0}
+.adm-cover{display:flex;gap:8px}
+.adm-cover input{flex:1;min-width:0}
+.adm-foot{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.adm-prev{position:sticky;top:64px;max-height:calc(100vh - 80px);overflow:auto}
+.adm-prev-head{padding:10px 16px;border-bottom:1px solid var(--a-line);font-size:.85rem;font-weight:700;color:var(--a-mute);position:sticky;top:0;background:#fff;z-index:1}
+.adm-prev .post{max-width:none;padding:18px 20px 28px;margin:0}
+.adm-prev .post h1{font-size:1.5rem;line-height:1.3}
+.adm-empty{padding:40px 16px;text-align:center;color:var(--a-mute)}
+dialog.adm-dlg{border:0;border-radius:16px;padding:20px;max-width:min(520px,calc(100vw - 24px));width:100%;box-shadow:0 30px 80px -20px rgba(8,24,60,.6);color:#1b2a47;background:#fff}
+dialog.adm-dlg::backdrop{background:rgba(8,24,60,.5)}
+dialog.adm-dlg h3{margin:0 0 8px}
+dialog.adm-dlg label{display:block;font-size:.82rem;font-weight:700;color:var(--a-mute);margin:12px 0 4px}
+dialog.adm-dlg p{margin:6px 0;font-size:.88rem;color:var(--a-mute)}
+.adm-dlg .adm-foot{justify-content:flex-end}
+.adm-check{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:.88rem}
+@media(max-width:1100px){
+  .adm-main{grid-template-columns:1fr}
+  .adm-tabs{display:flex}
+  .adm-list,.adm-prev{position:static;max-height:none}
+  .adm-main[data-view="list"] .adm-edit,.adm-main[data-view="list"] .adm-prev,
+  .adm-main[data-view="edit"] .adm-list,.adm-main[data-view="edit"] .adm-prev,
+  .adm-main[data-view="prev"] .adm-list,.adm-main[data-view="prev"] .adm-edit{display:none}
+  .adm-list ul{max-height:none}
+}
+@media(max-width:560px){.adm-row{grid-template-columns:1fr}.adm-btn{padding:7px 10px}}
+</style>
+<script src="articles-data.js"></script>
+<script src="articles-render.js"></script>
+</head>
+<body class="adm">
+<header class="adm-top">
+  <h1>文章後台</h1>
+  <span id="admStatus" class="adm-status">載入中…</span>
+  <div class="adm-actions">
+    <button class="adm-btn" id="btnSettings" type="button">網站設定</button>
+    <button class="adm-btn" id="btnDownload" type="button">下載檔案</button>
+    <button class="adm-btn primary" id="btnPublish" type="button">發布到網站</button>
+  </div>
+</header>
+<div id="admBanner" class="adm-banner" hidden></div>
+<div class="adm-tabs" id="admTabs">
+  <button type="button" data-v="list" aria-pressed="true">文章列表</button>
+  <button type="button" data-v="edit" aria-pressed="false">編輯</button>
+  <button type="button" data-v="prev" aria-pressed="false">預覽</button>
+</div>
+<main class="adm-main" id="admMain" data-view="list">
+  <aside class="adm-list">
+    <div class="adm-list-head"><input id="q" type="text" placeholder="搜尋文章" aria-label="搜尋文章"><button class="adm-btn primary sm" id="btnNew" type="button">＋ 新增</button></div>
+    <ul id="list"></ul>
+  </aside>
+  <section class="adm-edit" id="editor"></section>
+  <section class="adm-prev"><div class="adm-prev-head">預覽（跟網站彈窗內容一致）</div><div id="preview"></div></section>
+</main>
+
+<dialog class="adm-dlg" id="dlgSettings">
+  <h3>網站設定</h3>
+  <label for="s_name">網站名稱</label><input type="text" id="s_name">
+  <label for="s_cats">文章分類（一行一個，順序就是網站上的順序）</label><textarea id="s_cats" rows="6"></textarea>
+  <label for="s_home">首頁顯示幾篇文章</label><input type="number" id="s_home" min="2" max="24" step="2">
+  <div class="adm-check"><input type="checkbox" id="s_slots"><label for="s_slots" style="margin:0">文章不夠時，顯示灰色空白版位</label></div>
+  <p>發布位置（通常不用改）</p>
+  <div class="adm-row"><div><label for="g_owner">GitHub 帳號</label><input type="text" id="g_owner"></div><div><label for="g_repo">Repo 名稱</label><input type="text" id="g_repo"></div></div>
+  <div class="adm-row"><div><label for="g_branch">分支</label><input type="text" id="g_branch"></div><div><label for="g_path">資料檔</label><input type="text" id="g_path"></div></div>
+  <div class="adm-foot"><button class="adm-btn" id="setCancel" type="button">取消</button><button class="adm-btn primary" id="setOk" type="button">儲存設定</button></div>
+</dialog>
+
+<dialog class="adm-dlg" id="dlgToken">
+  <h3>輸入 GitHub Token</h3>
+  <p>要把文章（或圖片）寫回網站，需要一組 GitHub 的 Fine-grained token：只勾這個 repo、權限只給 <b>Contents：Read and write</b>，並設定到期日。Token 只會存在這個分頁，關掉分頁就會消失，不會寫進網站。</p>
+  <label for="t_val">Token</label><input type="password" id="t_val" autocomplete="off">
+  <div class="adm-foot"><button class="adm-btn" id="tokCancel" type="button">取消</button><button class="adm-btn primary" id="tokOk" type="button">確定</button></div>
+</dialog>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var DRAFT_KEY = 'ug_admin_draft_v1', CFG_KEY = 'ug_admin_cfg_v1', TOKEN_KEY = 'ug_admin_token';
+  var clone = function (o) { return JSON.parse(JSON.stringify(o)); };
+  var DEFAULT_CATS = ['遊戲攻略', '新手教學', '活動', '公告', '其他'];
+
+  var cfg = { owner: 'flysohigh002-cpu', repo: 'uggame-site', branch: 'main', path: 'articles-data.js' };
+  try { Object.assign(cfg, JSON.parse(localStorage.getItem(CFG_KEY) || '{}')); } catch (e) {}
+
+  var baseData = clone(window.ARTICLES_DATA || { site: {}, articles: [] });
+  var state = clone(baseData), baselineRaw = null, dirty = false, curKey = null, uidN = 0, view = 'list';
+  var localImg = {};   // 剛上傳、網站還沒更新的圖片：檔名 → 預覽用網址
+
+  function prep(d) {
+    d.site = d.site || {};
+    if (!d.site.categories || !d.site.categories.length) d.site.categories = DEFAULT_CATS.slice();
+    d.articles = (d.articles || []).map(function (a) { a._k = 'k' + (++uidN); return a; });
+    return d;
+  }
+  prep(state);
+
+  /* ---------- 狀態列 / 橫幅 ---------- */
+  function status(msg, cls) { var s = $('admStatus'); s.textContent = msg || ''; s.className = 'adm-status' + (cls ? ' ' + cls : ''); }
+  function setDirty(v) {
+    dirty = v;
+    status(v ? '有尚未發布的變更（已自動暫存在這台電腦）' : '所有變更都已發布', v ? 'warn' : '');
+    if (v) { clearTimeout(setDirty.t); setDirty.t = setTimeout(saveLocal, 400); }
+  }
+  function saveLocal() { try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ at: Date.now(), data: stripKeys(state) })); } catch (e) {} }
+  function stripKeys(d) { var c = clone(d); c.articles.forEach(function (a) { delete a._k; }); return c; }
+  window.addEventListener('beforeunload', function (e) { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+  /* ---------- 工具 ---------- */
+  function byKey(k) { for (var i = 0; i < state.articles.length; i++) if (state.articles[i]._k === k) return state.articles[i]; return null; }
+  function today() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function newId() { return 'post-' + today().replace(/-/g, '') + '-' + Math.random().toString(36).slice(2, 6); }
+  function sorted() {
+    return state.articles.map(function (a, i) { return [a, i]; }).sort(function (x, y) {
+      var d = String(y[0].date || '').localeCompare(String(x[0].date || ''));
+      return d || x[1] - y[1];
+    }).map(function (p) { return p[0]; });
+  }
+  function esc(s) { return window.UGArticles.esc(s); }
+
+  /* ---------- 文章列表 ---------- */
+  function renderList() {
+    var q = $('q').value.trim().toLowerCase(), h = '';
+    sorted().forEach(function (a) {
+      if (q && (a.title + ' ' + (a.category || '') + ' ' + a.id).toLowerCase().indexOf(q) < 0) return;
+      h += '<li data-k="' + a._k + '"' + (a._k === curKey ? ' aria-current="true"' : '') + '><b>' + esc(a.title || '（未命名）') +
+        (a.draft ? '<span class="adm-badge">草稿</span>' : '') + '</b><small>' + esc(a.category || '未分類') + ' · ' + esc(a.date || '') + '</small></li>';
+    });
+    $('list').innerHTML = h || '<li class="adm-empty">還沒有文章，按右上角「＋ 新增」開始</li>';
+  }
+
+  /* ---------- 編輯區 ---------- */
+  function renderEditor() {
+    var a = byKey(curKey), box = $('editor');
+    if (!a) { box.innerHTML = '<div class="adm-empty">從左邊選一篇文章，或按「＋ 新增」</div>'; $('preview').innerHTML = '<div class="adm-empty">這裡會即時預覽</div>'; return; }
+    var cats = state.site.categories.slice();
+    if (a.category && cats.indexOf(a.category) < 0) cats.push(a.category);
+    box.innerHTML =
+      '<h2>編輯文章</h2>' +
+      '<label for="f_title">標題</label><input type="text" id="f_title" value="' + esc(a.title) + '">' +
+      '<div class="adm-row"><div><label for="f_cat">分類</label><select id="f_cat">' + cats.map(function (c) { return '<option' + (c === a.category ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join('') + '</select></div>' +
+      '<div><label for="f_date">日期</label><input type="date" id="f_date" value="' + esc(a.date || '') + '"></div></div>' +
+      '<div class="adm-row"><div><label for="f_status">狀態</label><select id="f_status"><option value="pub"' + (a.draft ? '' : ' selected') + '>發布（網站上看得到）</option><option value="draft"' + (a.draft ? ' selected' : '') + '>草稿（先不公開）</option></select></div>' +
+      '<div><label for="f_id">文章代號（網址用）</label><input type="text" id="f_id" value="' + esc(a.id) + '"><p class="adm-err" id="idErr"></p></div></div>' +
+      '<label for="f_summary">摘要（40～60 字，顯示在卡片與搜尋結果）</label><textarea id="f_summary">' + esc(a.summary || '') + '</textarea>' +
+      '<label for="f_cover">封面圖（檔名或網址，可留空）</label><div class="adm-cover"><input type="text" id="f_cover" value="' + esc(a.cover || '') + '"><button class="adm-btn" id="btnCoverUp" type="button">上傳封面</button></div>' +
+      '<label for="f_body">文章內容</label>' +
+      '<div class="adm-tools" id="tools">' +
+        '<button class="adm-btn" data-t="h2" type="button">大標題</button><button class="adm-btn" data-t="h3" type="button">小標題</button>' +
+        '<button class="adm-btn" data-t="b" type="button"><b>粗體</b></button><button class="adm-btn" data-t="ul" type="button">• 清單</button>' +
+        '<button class="adm-btn" data-t="ol" type="button">1. 編號</button><button class="adm-btn" data-t="q" type="button">引言</button>' +
+        '<button class="adm-btn" data-t="note" type="button">提示框</button><button class="adm-btn" data-t="hr" type="button">分隔線</button>' +
+        '<button class="adm-btn" data-t="a" type="button">連結</button><button class="adm-btn" data-t="img" type="button">圖片</button>' +
+        '<button class="adm-btn" data-t="up" type="button">上傳圖片</button></div>' +
+      '<textarea id="f_body" spellcheck="false">' + esc(a.body || '') + '</textarea>' +
+      '<p class="adm-hint">段落之間空一行。選一行字再按「大標題／小標題」就會變成標題。</p>' +
+      '<div class="adm-foot"><button class="adm-btn" id="btnDup" type="button">複製這篇</button><button class="adm-btn danger" id="btnDel" type="button">刪除這篇</button></div>';
+    renderPreview();
+  }
+  function renderPreview() {
+    var a = byKey(curKey);
+    if (!a) return;
+    var h = '<article class="post">' + (a.draft ? '<p class="adm-badge" style="margin:0 0 8px">草稿（網站上不會顯示）</p>' : '') + window.UGArticles.articleInner(a) + '</article>';
+    var box = $('preview'); box.innerHTML = h;
+    [].forEach.call(box.querySelectorAll('img'), function (im) { var s = im.getAttribute('src'); if (localImg[s]) im.src = localImg[s]; });
+  }
+  function validId(a) {
+    var id = a.id || '';
+    if (!/^[A-Za-z0-9-]+$/.test(id)) return '只能用英文、數字、連字號';
+    for (var i = 0; i < state.articles.length; i++) if (state.articles[i] !== a && state.articles[i].id === id) return '這個代號已經被其他文章用了';
+    return '';
+  }
+
+  /* ---------- 工具列：在游標處插入格式 ---------- */
+  function lineRange(ta) {
+    var v = ta.value, s = ta.selectionStart, e = ta.selectionEnd;
+    var a = v.lastIndexOf('\n', s - 1) + 1, b = v.indexOf('\n', e); if (b < 0) b = v.length;
+    return [a, b];
+  }
+  function applyPrefix(ta, make, blockSep) {
+    var r = lineRange(ta), v = ta.value, seg = v.slice(r[0], r[1]);
+    var lines = seg.split('\n').map(function (l, i) { return make(l.replace(/^(#{2,3}\s+|[-*]\s+|\d+[.)]\s+|>\s?|!!\s+)/, ''), i); });
+    var out = lines.join('\n'), pre = '', post = '';
+    if (blockSep) {
+      if (r[0] > 0 && v.slice(Math.max(0, r[0] - 2), r[0]) !== '\n\n') pre = r[0] > 0 && v[r[0] - 1] === '\n' ? '\n' : '\n\n';
+      if (r[1] < v.length && v.slice(r[1], r[1] + 2) !== '\n\n') post = v[r[1]] === '\n' ? '\n' : '\n\n';
+    }
+    ta.value = v.slice(0, r[0]) + pre + out + post + v.slice(r[1]);
+    var pos = r[0] + pre.length + out.length; ta.setSelectionRange(pos, pos);
+  }
+  function wrapSel(ta, l, r, ph) {
+    var s = ta.selectionStart, e = ta.selectionEnd, sel = ta.value.slice(s, e) || ph;
+    ta.value = ta.value.slice(0, s) + l + sel + r + ta.value.slice(e);
+    ta.setSelectionRange(s + l.length, s + l.length + sel.length);
+  }
+  function insertAt(ta, txt) {
+    var s = ta.selectionStart, e = ta.selectionEnd, v = ta.value;
+    var pre = (s > 0 && v.slice(s - 2, s) !== '\n\n') ? (v[s - 1] === '\n' ? '\n' : '\n\n') : '';
+    ta.value = v.slice(0, s) + pre + txt + '\n\n' + v.slice(e);
+    var p = s + pre.length + txt.length + 2; ta.setSelectionRange(p, p);
+  }
+  function tool(t) {
+    var ta = $('f_body'), a = byKey(curKey);
+    if (!ta || !a) return;
+    if (t === 'h2') applyPrefix(ta, function (l) { return '## ' + (l || '大標題'); }, true);
+    else if (t === 'h3') applyPrefix(ta, function (l) { return '### ' + (l || '小標題'); }, true);
+    else if (t === 'ul') applyPrefix(ta, function (l) { return '- ' + (l || '項目'); }, true);
+    else if (t === 'ol') applyPrefix(ta, function (l, i) { return (i + 1) + '. ' + (l || '步驟'); }, true);
+    else if (t === 'q') applyPrefix(ta, function (l) { return '> ' + (l || '引言'); }, true);
+    else if (t === 'note') applyPrefix(ta, function (l) { return '!! ' + (l || '提示內容'); }, true);
+    else if (t === 'hr') insertAt(ta, '---');
+    else if (t === 'b') wrapSel(ta, '**', '**', '粗體文字');
+    else if (t === 'a') { var u = prompt('連結網址（https://…）', 'https://'); if (!u) return; wrapSel(ta, '[', '](' + u + ')', '連結文字'); }
+    else if (t === 'img') { var n = prompt('圖片檔名或網址（圖要先放進網站，或用「上傳圖片」）'); if (!n) return; var cap = prompt('圖片說明（可留空）', '') || ''; insertAt(ta, '![' + cap + '](' + n + ')'); }
+    else if (t === 'up') { pickImage(function (name) { insertAt(ta, '![](' + name + ')'); ta.dispatchEvent(new Event('input', { bubbles: true })); }); return; }
+    ta.focus();
+    ta.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
+  /* ---------- 事件 ---------- */
+  $('list').addEventListener('click', function (e) {
+    var li = e.target.closest('li[data-k]'); if (!li) return;
+    curKey = li.getAttribute('data-k'); renderList(); renderEditor(); setView('edit');
+  });
+  $('q').addEventListener('input', renderList);
+  $('btnNew').addEventListener('click', function () {
+    var a = { _k: 'k' + (++uidN), id: newId(), title: '', category: state.site.categories[0], date: today(), summary: '', cover: '', draft: true,
+      body: '## 大標題\n\n這裡寫內容。\n\n### 小標題\n\n- 重點一\n- 重點二' };
+    state.articles.unshift(a); curKey = a._k; setDirty(true); renderList(); renderEditor(); setView('edit');
+    setTimeout(function () { var t = $('f_title'); if (t) t.focus(); }, 50);
+  });
+  $('editor').addEventListener('input', function (e) {
+    var a = byKey(curKey); if (!a) return;
+    var id = e.target.id;
+    if (id === 'f_title') a.title = e.target.value;
+    else if (id === 'f_summary') a.summary = e.target.value;
+    else if (id === 'f_cover') a.cover = e.target.value.trim();
+    else if (id === 'f_body') a.body = e.target.value;
+    else if (id === 'f_id') { a.id = e.target.value.trim(); $('idErr').textContent = validId(a); }
+    else return;
+    setDirty(true); renderPreview(); if (id === 'f_title') renderList();
+  });
+  $('editor').addEventListener('change', function (e) {
+    var a = byKey(curKey); if (!a) return;
+    var id = e.target.id;
+    if (id === 'f_cat') a.category = e.target.value;
+    else if (id === 'f_date') a.date = e.target.value;
+    else if (id === 'f_status') { if (e.target.value === 'draft') a.draft = true; else delete a.draft; }
+    else return;
+    setDirty(true); renderPreview(); renderList();
+  });
+  $('editor').addEventListener('click', function (e) {
+    var t = e.target.closest('[data-t]'); if (t) { tool(t.getAttribute('data-t')); return; }
+    if (e.target.id === 'btnCoverUp') { pickImage(function (name) { var a = byKey(curKey); a.cover = name; $('f_cover').value = name; setDirty(true); renderPreview(); }); }
+    else if (e.target.id === 'btnDup') {
+      var a = byKey(curKey), c = clone(a); c._k = 'k' + (++uidN); c.id = newId(); c.title = (a.title || '') + '（副本）'; c.draft = true;
+      state.articles.unshift(c); curKey = c._k; setDirty(true); renderList(); renderEditor();
+    } else if (e.target.id === 'btnDel') {
+      var a2 = byKey(curKey);
+      if (!confirm('確定要刪除「' + (a2.title || '未命名') + '」嗎？（發布前都還可以按「重新整理」放棄變更）')) return;
+      state.articles = state.articles.filter(function (x) { return x !== a2; });
+      curKey = null; setDirty(true); renderList(); renderEditor(); setView('list');
+    }
+  });
+  $('admTabs').addEventListener('click', function (e) { var b = e.target.closest('[data-v]'); if (b) setView(b.getAttribute('data-v')); });
+  function setView(v) {
+    view = v; $('admMain').setAttribute('data-view', v);
+    [].forEach.call($('admTabs').querySelectorAll('button'), function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-v') === v ? 'true' : 'false'); });
+    if (window.scrollTo) window.scrollTo(0, 0);
+  }
+
+  /* ---------- 輸出檔案 ---------- */
+  var HEADER = '/* ============================================================\n' +
+    '   UG Online｜全站文章資料庫（由 admin.html 後台產生）\n' +
+    '   全站文章都在這個檔案，首頁、所有文章列表、彈窗、文章頁會一起更新。\n' +
+    '   建議直接用網站上的 admin.html 編輯並發布；手動改也可以。\n\n' +
+    '   body 寫法：段落之間空一行\n' +
+    '   ## 大標題    ### 小標題    - 清單    1. 編號清單    > 引言\n' +
+    '   !! 提示框    ---  分隔線   **粗體**   [文字](網址)   ![說明](圖片檔名)\n' +
+    '   ⚠ 手動編輯時，body 內文不要直接打「`」符號和「${」。\n' +
+    '   ============================================================ */\n\n';
+  function tpl(s) { return '`' + String(s).replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$\{/g, '\\${') + '`'; }
+  function serialize() {
+    var site = clone(state.site), out = HEADER + 'window.ARTICLES_DATA = {\n\n  site: ' + JSON.stringify(site, null, 2).replace(/\n/g, '\n  ') + ',\n\n  articles: [\n';
+    var items = sorted().map(function (a) {
+      var known = ['_k', 'id', 'title', 'category', 'date', 'summary', 'cover', 'coverAlt', 'draft', 'body'];
+      var L = ['      id: ' + JSON.stringify(a.id || ''), '      title: ' + JSON.stringify(a.title || ''), '      category: ' + JSON.stringify(a.category || ''), '      date: ' + JSON.stringify(a.date || ''), '      summary: ' + JSON.stringify(a.summary || ''), '      cover: ' + JSON.stringify(a.cover || '')];
+      if (a.coverAlt) L.push('      coverAlt: ' + JSON.stringify(a.coverAlt));
+      Object.keys(a).forEach(function (k) { if (known.indexOf(k) < 0) L.push('      ' + JSON.stringify(k) + ': ' + JSON.stringify(a[k])); });
+      if (a.draft) L.push('      draft: true');
+      L.push('      body: ' + tpl(a.body || ''));
+      return '    {\n' + L.join(',\n') + '\n    }';
+    });
+    return out + items.join(',\n') + '\n  ]\n};\n';
+  }
+  function problems() {
+    var p = [];
+    state.articles.forEach(function (a) {
+      var n = a.title || '（未命名）', e = validId(a);
+      if (e) p.push('「' + n + '」文章代號：' + e);
+      if (!a.draft && !(a.title || '').trim()) p.push('有一篇要發布的文章沒有標題');
+    });
+    return p;
+  }
+  $('btnDownload').addEventListener('click', function () {
+    var p = problems(); if (p.length) { alert('請先修正：\n\n' + p.join('\n')); return; }
+    var blob = new Blob([serialize()], { type: 'text/javascript;charset=utf-8' }), a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'articles-data.js'; document.body.appendChild(a); a.click(); a.remove();
+    status('已下載 articles-data.js，請上傳覆蓋 GitHub 上的同名檔案', 'ok');
+  });
+
+  /* ---------- GitHub：Token / 發布 / 上傳圖片 ---------- */
+  function getToken() { try { return sessionStorage.getItem(TOKEN_KEY) || ''; } catch (e) { return ''; } }
+  function askToken() {
+    return new Promise(function (res) {
+      var t = getToken(); if (t) return res(t);
+      var d = $('dlgToken'); $('t_val').value = '';
+      function done(v) { d.close(); $('tokOk').onclick = $('tokCancel').onclick = null; res(v); }
+      $('tokOk').onclick = function () { var v = $('t_val').value.trim(); if (v) { try { sessionStorage.setItem(TOKEN_KEY, v); } catch (e) {} } done(v); };
+      $('tokCancel').onclick = function () { done(''); };
+      d.showModal(); $('t_val').focus();
+    });
+  }
+  function api(path, opt, token) {
+    opt = opt || {}; opt.headers = Object.assign({ 'Accept': 'application/vnd.github+json', 'Authorization': 'Bearer ' + token, 'X-GitHub-Api-Version': '2022-11-28' }, opt.headers || {});
+    return fetch('https://api.github.com/repos/' + encodeURIComponent(cfg.owner) + '/' + encodeURIComponent(cfg.repo) + '/contents/' + path.split('/').map(encodeURIComponent).join('/') + (opt.q || ''), opt);
+  }
+  function b64(str) { var b = new TextEncoder().encode(str), s = ''; for (var i = 0; i < b.length; i += 8192) s += String.fromCharCode.apply(null, b.subarray(i, i + 8192)); return btoa(s); }
+  function b64buf(buf) { var b = new Uint8Array(buf), s = ''; for (var i = 0; i < b.length; i += 8192) s += String.fromCharCode.apply(null, b.subarray(i, i + 8192)); return btoa(s); }
+  function unb64(s) { var bin = atob(s.replace(/\s/g, '')), b = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) b[i] = bin.charCodeAt(i); return new TextDecoder().decode(b); }
+  function explain(r) {
+    if (r.status === 401) { try { sessionStorage.removeItem(TOKEN_KEY); } catch (e) {} return 'Token 無效或已過期，請重新輸入'; }
+    if (r.status === 403) return 'Token 沒有這個 repo 的寫入權限（需要 Contents：Read and write）';
+    if (r.status === 404) return '找不到 repo 或檔案，請到「網站設定」檢查帳號、Repo、分支與檔名';
+    if (r.status === 409 || r.status === 422) return '線上檔案剛被更新，請再按一次發布';
+    return '發生錯誤（' + r.status + '）';
+  }
+  $('btnPublish').addEventListener('click', async function () {
+    var p = problems(); if (p.length) { alert('請先修正：\n\n' + p.join('\n')); return; }
+    var token = await askToken(); if (!token) return;
+    var btn = this; btn.disabled = true; status('發布中…');
+    try {
+      var path = cfg.path, text = serialize();
+      var g = await api(path, { q: '?ref=' + encodeURIComponent(cfg.branch) }, token);
+      var sha = null;
+      if (g.status === 200) {
+        var j = await g.json(); sha = j.sha;
+        var remote = unb64(j.content).replace(/\r\n/g, '\n');
+        if (baselineRaw !== null && remote !== baselineRaw.replace(/\r\n/g, '\n')) {
+          if (!confirm('線上的文章檔在你打開後台之後被改過（可能有人用別的方式編輯）。\n\n繼續發布會覆蓋掉那些變更，確定嗎？')) { status('已取消發布', 'warn'); btn.disabled = false; return; }
+        }
+      } else if (g.status !== 404) { status(explain(g), 'err'); btn.disabled = false; return; }
+      var body = { message: '更新文章（後台）', content: b64(text), branch: cfg.branch }; if (sha) body.sha = sha;
+      var r = await api(path, { method: 'PUT', body: JSON.stringify(body), headers: { 'Content-Type': 'application/json' } }, token);
+      if (!r.ok) { status(explain(r), 'err'); btn.disabled = false; return; }
+      baselineRaw = text; baseData = stripKeys(state); try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+      dirty = false; status('已發布！約 1～2 分鐘後，首頁、所有文章與彈窗都會更新', 'ok');
+    } catch (err) { status('連線失敗：' + err.message, 'err'); }
+    btn.disabled = false;
+  });
+
+  /* 圖片：選檔 → 縮圖 → 上傳到 repo 根目錄 */
+  function pickImage(cb) {
+    var inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
+    inp.onchange = async function () {
+      var f = inp.files[0]; if (!f) return;
+      var token = await askToken(); if (!token) return;
+      status('上傳圖片中…');
+      try {
+        var blob = f, ext = (f.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (/^(jpe?g|png|webp)$/.test(ext) && f.size > 400 * 1024) {
+          var bmp = await createImageBitmap(f), sc = Math.min(1, 1600 / bmp.width), cv = document.createElement('canvas');
+          cv.width = Math.round(bmp.width * sc); cv.height = Math.round(bmp.height * sc);
+          var cx = cv.getContext('2d'); cx.fillStyle = '#fff'; cx.fillRect(0, 0, cv.width, cv.height); cx.drawImage(bmp, 0, 0, cv.width, cv.height);
+          blob = await new Promise(function (r) { cv.toBlob(r, 'image/jpeg', 0.85); }); ext = 'jpg';
+        }
+        var name = 'article-' + Date.now().toString(36) + '.' + ext;
+        var buf = await blob.arrayBuffer();
+        var r = await api(name, { method: 'PUT', body: JSON.stringify({ message: '上傳圖片 ' + name, content: b64buf(buf), branch: cfg.branch }), headers: { 'Content-Type': 'application/json' } }, token);
+        if (!r.ok) { status(explain(r), 'err'); return; }
+        localImg[name] = URL.createObjectURL(blob);
+        cb(name);
+        status('圖片已上傳（檔名 ' + name + '）。記得再按「發布到網站」；圖片約 1～2 分鐘後才會在網站上看到', 'ok');
+      } catch (err) { status('上傳失敗：' + err.message, 'err'); }
+    };
+    inp.click();
+  }
+
+  /* ---------- 網站設定 ---------- */
+  $('btnSettings').addEventListener('click', function () {
+    $('s_name').value = state.site.name || ''; $('s_cats').value = (state.site.categories || []).join('\n');
+    $('s_home').value = state.site.homeCount || 8; $('s_slots').checked = state.site.showEmptySlots !== false;
+    $('g_owner').value = cfg.owner; $('g_repo').value = cfg.repo; $('g_branch').value = cfg.branch; $('g_path').value = cfg.path;
+    $('dlgSettings').showModal();
+  });
+  $('setCancel').addEventListener('click', function () { $('dlgSettings').close(); });
+  $('setOk').addEventListener('click', function () {
+    var cats = $('s_cats').value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
+    if (!cats.length) { alert('至少要有一個分類'); return; }
+    state.site.name = $('s_name').value.trim() || 'UG Online'; state.site.author = state.site.author || state.site.name;
+    state.site.categories = cats; state.site.homeCount = Math.max(2, +$('s_home').value || 8); state.site.showEmptySlots = $('s_slots').checked;
+    cfg = { owner: $('g_owner').value.trim(), repo: $('g_repo').value.trim(), branch: $('g_branch').value.trim() || 'main', path: $('g_path').value.trim() || 'articles-data.js' };
+    try { localStorage.setItem(CFG_KEY, JSON.stringify(cfg)); } catch (e) {}
+    $('dlgSettings').close(); setDirty(true); renderEditor();
+  });
+
+  /* ---------- 啟動 ---------- */
+  function init() {
+    renderList(); renderEditor();
+    var first = sorted()[0]; if (first) { curKey = first._k; renderList(); renderEditor(); }
+    status('所有變更都已發布');
+    fetch('articles-data.js?_=' + Date.now()).then(function (r) { return r.ok ? r.text() : null; }).then(function (t) { baselineRaw = t; }).catch(function () {});
+    try {
+      var d = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
+      if (d && d.data && JSON.stringify(d.data) !== JSON.stringify(baseData)) {
+        var b = $('admBanner'), when = new Date(d.at).toLocaleString('zh-TW');
+        b.hidden = false;
+        b.innerHTML = '<span>這台電腦有一份尚未發布的草稿（' + when + '）。</span><button class="adm-btn sm primary" id="bRestore" type="button">還原草稿</button><button class="adm-btn sm" id="bDrop" type="button">捨棄</button>';
+        $('bRestore').onclick = function () { state = prep(clone(d.data)); curKey = null; var f = sorted()[0]; if (f) curKey = f._k; b.hidden = true; setDirty(true); renderList(); renderEditor(); };
+        $('bDrop').onclick = function () { try { localStorage.removeItem(DRAFT_KEY); } catch (e) {} b.hidden = true; };
+      }
+    } catch (e) {}
+  }
+  init();
+})();
+</script>
+</body>
+</html>
