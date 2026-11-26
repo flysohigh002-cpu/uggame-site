@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#e4edfa">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>優惠專區｜UG Online</title>
+<meta name="description" content="UG Online 優惠專區：新會員首儲、時時反水、VIP 禮遇、每月儲值回饋等活動一次看。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="promotions.css">
+</head>
+<body class="page-promo">
+<main class="pm">
+ <div class="pm-top"><div class="pm-bar">
+  <a class="pm-back" href="index.html" id="pmBack" aria-label="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></a>
+  <h1>優惠專區</h1>
+ </div></div>
+
+ <div class="pm-tabs" role="tablist" aria-label="優惠分類">
+  <button class="pm-tab" role="tab" aria-selected="true" data-f="all">全部</button>
+  <button class="pm-tab" role="tab" aria-selected="false" data-f="hot">熱門活動</button>
+  <button class="pm-tab" role="tab" aria-selected="false" data-f="apply">優惠申請</button>
+ </div>
+
+ <!-- 每張卡片：id="pN" 讓首頁輪播可以直接捲到對應那張；data-cat 決定出現在哪個分頁（hot=熱門活動、apply=優惠申請，可兩個都寫）；href 是點卡片後前往的網址 -->
+ <div class="pm-list" id="pmList">
+  <a class="pm-card" id="p1" data-cat="hot apply" href="https://ug-tw.com/Register?p=car1" target="_blank" rel="noopener"><img src="images/promo-01.jpg" alt="歡迎新會員 首儲1000送1000" width="1050" height="450"></a>
+  <a class="pm-card" id="p2" data-cat="hot" href="https://ug-tw.com/Register?p=car1" target="_blank" rel="noopener"><img src="images/promo-02.jpg" alt="時時反水 1%起" width="1050" height="450"></a>
+  <a class="pm-card" id="p3" data-cat="apply" href="https://ug-tw.com/Register?p=car1" target="_blank" rel="noopener"><img src="images/promo-03.jpg" alt="VIP專屬尊榮禮遇 獨享專屬福利" width="1050" height="450"></a>
+  <a class="pm-card" id="p4" data-cat="hot" href="https://ug-tw.com/Register?p=car1" target="_blank" rel="noopener"><img src="images/promo-04.jpg" alt="百家連勝王 UG助你一臂之力" width="1050" height="450"></a>
+  <a class="pm-card" id="p5" data-cat="apply" href="https://ug-tw.com/Register?p=car1" target="_blank" rel="noopener"><img src="images/promo-05.jpg" alt="USDT泰達幣儲值 每筆回饋1%" width="1050" height="450" loading="lazy"></a>
+  <a class="pm-card" id="p6" data-cat="apply" href="https://ug-tw.com/Register?p=car1" target="_blank" rel="noopener"><img src="images/promo-06.jpg" alt="每月5號儲值 領10%" width="1050" height="450" loading="lazy"></a>
+  <a class="pm-card" id="p7" data-cat="apply" href="https://ug-tw.com/Register?p=car1" target="_blank" rel="noopener"><img src="images/promo-07.jpg" alt="現金存取交收服務" width="1050" height="450" loading="lazy"></a>
+  <a class="pm-card" id="p8" data-cat="hot" href="https://ug-tw.com/Register?p=car1" target="_blank" rel="noopener"><img src="images/promo-08.jpg" alt="MLB季後賽排行榜 強棒集結" width="1050" height="450" loading="lazy"></a>
+  <a class="pm-card" id="p9" data-cat="hot" href="https://ug-tw.com/Register?p=car1" target="_blank" rel="noopener"><img src="images/promo-09.jpg" alt="NBA開季任務 完成指定任務解鎖開季獎勵" width="1050" height="450" loading="lazy"></a>
+  <a class="pm-card" id="p10" data-cat="hot" href="https://ug-tw.com/Register?p=car1" target="_blank" rel="noopener"><img src="images/promo-10.jpg" alt="SUPER足球王者之路 豪取王者獎金" width="1050" height="450" loading="lazy"></a>
+ </div>
+ <p class="pm-empty" id="pmEmpty" hidden>目前沒有活動</p>
+</main>
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.pm-tab')),
+      cards=[].slice.call(document.querySelectorAll('.pm-card')),
+      empty=document.getElementById('pmEmpty');
+  function filter(f){
+    var n=0;
+    cards.forEach(function(c){
+      var show=f==='all'||(' '+c.dataset.cat+' ').indexOf(' '+f+' ')>-1;
+      c.hidden=!show; if(show)n++;
+    });
+    empty.hidden=n>0;
+    tabs.forEach(function(t){t.setAttribute('aria-selected',t.dataset.f===f?'true':'false');});
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){filter(t.dataset.f);window.scrollTo({top:0,behavior:'smooth'});});});
+
+  /* 返回鈕：有上一頁就回上一頁，新分頁直接開啟時回首頁 */
+  document.getElementById('pmBack').addEventListener('click',function(e){
+    if(history.length>1&&document.referrer&&new URL(document.referrer).origin===location.origin){e.preventDefault();history.back();}
+  });
+
+  /* 從首頁輪播點進來：捲到對應那張（CSS :target 會閃一下外框） */
+  if(location.hash){
+    var t=document.getElementById(location.hash.slice(1));
+    if(t)setTimeout(function(){t.scrollIntoView({block:'center'});},60);
+  }
+})();
+</script>
+</body>
+</html>

@@ -214,7 +214,13 @@
       if (x0 === null) return;
       var dx = e.clientX - x0;
       x0 = null;
-      if (Math.abs(dx) > 45) { dx < 0 ? next() : prev(); play(); }
+      if (Math.abs(dx) > 45) {
+        /* 滑動換圖時不要誤觸「點擊開啟優惠頁」 */
+        var stop = function (ev) { ev.preventDefault(); ev.stopPropagation(); };
+        sl.addEventListener('click', stop, { capture: true, once: true });
+        setTimeout(function () { sl.removeEventListener('click', stop, { capture: true }); }, 400);
+        dx < 0 ? next() : prev(); play();
+      }
     });
     sl.addEventListener('pointercancel', function () { x0 = null; });
 

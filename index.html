@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="promotions.css">
 <script src="articles-data.js" defer></script>
 <script src="articles-render.js" defer></script>
 <script src="site.js" defer></script>
@@ -23,12 +24,18 @@
  <nav id="menu" aria-label="主選單"><ul><li><a href="index.html">首頁</a></li><li><a href="articles.html">遊戲攻略</a></li><li><a href="articles.html">活動</a></li><li><a href="articles.html">公告</a></li><li><a href="articles.html">所有文章</a></li><li class="cta-li"><a href="https://ug-tw.com/Register?p=car1" target="_blank" rel="noopener">進入遊戲</a></li></ul></nav>
 </div></header>
 <main id="top" class="home-app">
-<!-- 活動 Banner：每張圖建議 1100×500。換圖：把 <div class="ph img">…</div> 整個換成 <img src="banner-1.jpg" alt="說明">。增減張數就增減 <div class="slide">，圓點會自動跟著變 -->
+<!-- 活動 Banner：圖片放在 images/promo-XX.jpg（1050×450）。點擊會在新分頁開啟 promotions.html（#pN 會捲到對應那一張）。增減張數就增減 <a class="slide">，圓點會自動跟著變 -->
 <section class="banner"><div class="slider" role="region" aria-roledescription="carousel" aria-label="活動橫幅輪播">
- <div class="slide"><div class="ph img">【Banner 1｜1100×500】</div></div>
- <div class="slide"><div class="ph img">【Banner 2｜1100×500】</div></div>
- <div class="slide"><div class="ph img">【Banner 3｜1100×500】</div></div>
- <div class="slide"><div class="ph img">【Banner 4｜1100×500】</div></div>
+ <a class="slide" href="promotions.html#p1" target="_blank" rel="noopener" draggable="false" aria-label="歡迎新會員 首儲1000送1000"><img src="images/promo-01.jpg" alt="歡迎新會員 首儲1000送1000" width="1050" height="450" draggable="false"></a>
+ <a class="slide" href="promotions.html#p2" target="_blank" rel="noopener" draggable="false" aria-label="時時反水 1%起"><img src="images/promo-02.jpg" alt="時時反水 1%起" width="1050" height="450" draggable="false"></a>
+ <a class="slide" href="promotions.html#p3" target="_blank" rel="noopener" draggable="false" aria-label="VIP專屬尊榮禮遇 獨享專屬福利"><img src="images/promo-03.jpg" alt="VIP專屬尊榮禮遇 獨享專屬福利" width="1050" height="450" loading="lazy" draggable="false"></a>
+ <a class="slide" href="promotions.html#p4" target="_blank" rel="noopener" draggable="false" aria-label="百家連勝王 UG助你一臂之力"><img src="images/promo-04.jpg" alt="百家連勝王 UG助你一臂之力" width="1050" height="450" loading="lazy" draggable="false"></a>
+ <a class="slide" href="promotions.html#p5" target="_blank" rel="noopener" draggable="false" aria-label="USDT泰達幣儲值 每筆回饋1%"><img src="images/promo-05.jpg" alt="USDT泰達幣儲值 每筆回饋1%" width="1050" height="450" loading="lazy" draggable="false"></a>
+ <a class="slide" href="promotions.html#p6" target="_blank" rel="noopener" draggable="false" aria-label="每月5號儲值 領10%"><img src="images/promo-06.jpg" alt="每月5號儲值 領10%" width="1050" height="450" loading="lazy" draggable="false"></a>
+ <a class="slide" href="promotions.html#p7" target="_blank" rel="noopener" draggable="false" aria-label="現金存取交收服務"><img src="images/promo-07.jpg" alt="現金存取交收服務" width="1050" height="450" loading="lazy" draggable="false"></a>
+ <a class="slide" href="promotions.html#p8" target="_blank" rel="noopener" draggable="false" aria-label="MLB季後賽排行榜 強棒集結"><img src="images/promo-08.jpg" alt="MLB季後賽排行榜 強棒集結" width="1050" height="450" loading="lazy" draggable="false"></a>
+ <a class="slide" href="promotions.html#p9" target="_blank" rel="noopener" draggable="false" aria-label="NBA開季任務 完成指定任務解鎖開季獎勵"><img src="images/promo-09.jpg" alt="NBA開季任務 完成指定任務解鎖開季獎勵" width="1050" height="450" loading="lazy" draggable="false"></a>
+ <a class="slide" href="promotions.html#p10" target="_blank" rel="noopener" draggable="false" aria-label="SUPER足球王者之路 豪取王者獎金"><img src="images/promo-10.jpg" alt="SUPER足球王者之路 豪取王者獎金" width="1050" height="450" loading="lazy" draggable="false"></a>
  <div class="dots"></div>
 </div></section>
 
