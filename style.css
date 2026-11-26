@@ -662,3 +662,8 @@ footer.site.mini .copy{margin-top:8px}
 /* ===== UG Online Logo（透明背景、不裁圓、不顯示文字） ===== */
 .brand .logo{width:auto;height:44px;max-width:none;border-radius:0;box-shadow:none;filter:drop-shadow(0 4px 8px rgba(11,40,100,.25))}
 .f-brand .logo{width:auto;height:46px;border-radius:0;box-shadow:none}
+
+/* ===== 頁尾：單排文字連結 ===== */
+footer.site.mini .flinks{display:flex;flex-wrap:wrap;gap:2px 22px;margin:14px 0 4px}
+footer.site.mini .flinks li a{padding:8px 0;font-size:.95rem;font-weight:500;color:#dbe6f8}
+@media (hover:hover){footer.site.mini .flinks li a:hover{transform:none;color:#6fd2ff}}
