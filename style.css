@@ -586,11 +586,11 @@ footer.site{border-radius:28px;background:radial-gradient(60% 80% at 100% 0%,rgb
   .tabbar{overflow:visible;background:rgba(255,255,255,.96);border:1px solid #fff;border-radius:30px;box-shadow:0 -6px 24px -10px rgba(25,80,170,.25),0 16px 30px -14px rgba(25,80,170,.45)}
   .tabbar a{color:#556a8a;font-weight:600}
   .tabbar a[aria-current]{background:none;box-shadow:none;color:var(--accent);font-weight:800}
-  .tabbar a:nth-child(3){overflow:visible;justify-content:flex-end;padding-bottom:4px;color:#2a4670;font-weight:800;z-index:2}
-  .tabbar a:nth-child(3)::before{content:"";position:absolute;left:50%;top:-40px;width:60px;height:60px;translate:-50% 0;border-radius:50%;background:linear-gradient(160deg,#6fd0ff,#0b72e6);border:4px solid #fff;box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 14px 22px -8px rgba(11,111,224,.75),0 4px 10px rgba(11,111,224,.3);transition:transform .2s}
-  .tabbar a:nth-child(3):active::before{transform:scale(.92)}
-  .tabbar a:nth-child(3) svg{position:absolute;top:-25px;left:50%;translate:-50% 0;width:30px;height:30px;color:#fff;z-index:1}
-  .tabbar a:nth-child(3) .rip{display:none}
+  .tabbar a[href*="ug-tw.com"]{overflow:visible;justify-content:flex-end;padding-bottom:4px;color:#2a4670;font-weight:800;z-index:2}
+  .tabbar a[href*="ug-tw.com"]::before{content:"";position:absolute;left:50%;top:-40px;width:60px;height:60px;translate:-50% 0;border-radius:50%;background:linear-gradient(160deg,#6fd0ff,#0b72e6);border:4px solid #fff;box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 14px 22px -8px rgba(11,111,224,.75),0 4px 10px rgba(11,111,224,.3);transition:transform .2s}
+  .tabbar a[href*="ug-tw.com"]:active::before{transform:scale(.92)}
+  .tabbar a[href*="ug-tw.com"] svg{position:absolute;top:-25px;left:50%;translate:-50% 0;width:30px;height:30px;color:#fff;z-index:1}
+  .tabbar a[href*="ug-tw.com"] .rip{display:none}
 }
 
 /* 深色模式 */
@@ -607,8 +607,8 @@ footer.site{border-radius:28px;background:radial-gradient(60% 80% at 100% 0%,rgb
   .tabbar{background:rgba(18,32,60,.96)!important;border-color:rgba(255,255,255,.08)!important}
   .tabbar a{color:#a9bdd9}
   .tabbar a[aria-current]{color:#6fc0ff}
-  .tabbar a:nth-child(3){color:#cfe2ff}
-  .tabbar a:nth-child(3)::before{border-color:#12203c}
+  .tabbar a[href*="ug-tw.com"]{color:#cfe2ff}
+  .tabbar a[href*="ug-tw.com"]::before{border-color:#12203c}
 }
 
 
@@ -686,3 +686,46 @@ footer.site.mini .flinks li a{padding:8px 0;font-size:.95rem;font-weight:500;col
 .legal-close{font-weight:700}
 .legal-links{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
 footer.site.mini .flinks li a[aria-current="page"]{color:#6fd2ff;font-weight:700}
+
+/* 關於本站：遊戲項目列表 */
+.glist{display:grid;gap:10px}
+.grow{display:grid;grid-template-columns:6.5em 1fr;gap:6px 14px;align-items:start;padding:12px 0;border-top:1px solid var(--line)}
+.grow:first-child{border-top:0;padding-top:0}
+.grow>b{font-weight:700;line-height:1.9}
+.pchips{display:flex;flex-wrap:wrap;gap:6px 8px}
+.pchip{display:inline-block;padding:3px 12px;border-radius:999px;background:var(--chip-bg);color:var(--chip-ink);font-size:.9rem;line-height:1.7;font-weight:500}
+.card.art li strong{font-weight:700;margin-right:.3em}
+.card.art .more{margin:14px 0 0}
+@media (max-width:520px){.grow{grid-template-columns:1fr}}
+
+/* 關於本站：項目／管道清單 */
+ul.kv{list-style:none;margin:0 0 6px;padding:0;display:grid;gap:10px}
+ul.kv li{display:grid;grid-template-columns:8.5em 1fr;gap:4px 16px;align-items:baseline;padding:12px 14px;border-radius:16px;background:rgba(66,140,250,.08);line-height:1.7}
+ul.kv li strong{font-weight:700}
+ul.kv.pay li{grid-template-columns:1fr;gap:2px}
+@media (max-width:600px){ul.kv li{grid-template-columns:1fr;gap:2px}}
+.card.art ul.kv{padding-left:0;margin:0 0 6px}
+.card.art ul.kv li{margin:0}
+.card.art ul.rich{list-style:none;padding:0;display:grid;gap:10px}
+.card.art ul.rich li{padding:12px 14px;border-radius:16px;background:var(--chip-bg);line-height:1.75}
+.card.art ul.rich strong{display:block;margin-bottom:2px}
+.game-list{margin:0;display:grid;gap:12px}
+.game-list>div{display:grid;gap:8px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.game-list>div:last-child{border-bottom:0;padding-bottom:0}
+.game-list dt{font-weight:700}
+.game-list dd{margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.game-list dd span{padding:4px 12px;border-radius:999px;background:var(--chip-bg);color:var(--chip-ink);font-size:.9rem;font-weight:500}
+@media (min-width:700px){.game-list>div{grid-template-columns:110px 1fr;align-items:start}}
+
+/* 手機底部導覽：防止圖示縮小、文字換行、項目掉到第二排（窄螢幕也穩定） */
+@media (max-width:900px){
+  .tabbar{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:2px;padding:6px 4px}
+  .tabbar a{min-width:0;padding:0 2px;gap:3px;line-height:1.1;font-size:.7rem;white-space:nowrap}
+  .tabbar a svg{flex:none;width:24px;height:24px;min-width:24px;min-height:24px}
+  .tabbar a span{display:block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:clip}
+  .tabbar a[href*="ug-tw.com"] svg{width:30px;height:30px;min-width:30px;min-height:30px}
+}
+@media (max-width:360px){
+  .tabbar a{font-size:.62rem;letter-spacing:-.02em}
+  .tabbar a svg{width:22px;height:22px;min-width:22px;min-height:22px}
+}
